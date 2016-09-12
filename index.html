@@ -2,19 +2,30 @@
 nav: index
 ---
 
+<p>
 The purpose of the Cornell Scientific Software Club is to learn about
 modern tools relevant for developing and deploying scientific codes.
 Researchers from all areas of computational science and engineering
 are welcome.  The planned meeting time is Mondays at 6 pm,
 starting on 2016-09-12 (the Monday after Labor Day) in Gates 122.
-We have a list of [planned topics][plans],
+We have a list of <a href="plans.html">planned topics</a>,
 but so far no specific schedule.
+</p>
 
+<p>
 If you are interested in participating, please
-[join on OrgSync][orgsync].  Membership is free, and your official
+<a href="https://orgsync.com/145925/chapter">join on OrgSync</a>.
+Membership is free, and your official
 participation will help us in making room requests and securing funding
 and resources (e.g. cloud computing cycles).
+</p>
 
-[plans]: plans.html
-[gform]: https://goo.gl/forms/DsyadREHowaC04To1
-[orgsync]: https://orgsync.com/145925/chapter
+{% for post in site.posts %}
+<div>
+  <div>
+    <h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
+    <p>{{ post.date | date: "%b %-d, %Y" }}{% if post.author %} &#8226; {{ post.author }}{% endif %}{% if post.meta %} &#8226; {{ post.meta }}{% endif %}</p>
+  </div>
+  {{ post.excerpt }}
+</div>
+{% endfor %}

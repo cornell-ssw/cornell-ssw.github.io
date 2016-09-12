@@ -4,6 +4,7 @@ layout: default
 
 <div class="page-header">
 <p class="lead">{{ page.title }}</p>
+{% if page.speaker %}
 <p>
   {% if page.speaker.url %}
   <a href="{{ page.speaker.url }}">{{ page.speaker.name }}</a>
@@ -12,6 +13,7 @@ layout: default
   {% endif %}
   ({{ page.speaker.affil }})
 </p>
+{% endif %}
 </div>
 
 {{ content }}
