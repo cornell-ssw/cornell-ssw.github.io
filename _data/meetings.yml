@@ -1,0 +1,19 @@
+################################################################################
+# Week 1
+################################################################################
+-
+  date: 2016-09-12
+  info: <a href="/meetings/2016-09-12">Welcome to SSW</a>
+  brief:
+    - Discussion of the goals of the club.
+    - Intro to Unix and Windows shell.
+################################################################################
+# Week 2
+################################################################################
+-
+  date: 2016-09-19
+  info: <a href="/meetings/2016-09-19">Working with Remote Hosts</a>
+  brief:
+    - Introduction to using <tt>ssh</tt> effectively.
+    - Introduction to using <tt>git</tt> effectively.
+    - Example repository for more convenient terminal and tools.
