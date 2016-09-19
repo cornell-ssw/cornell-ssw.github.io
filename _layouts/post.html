@@ -2,18 +2,59 @@
 layout: default
 ---
 
-<div class="page-header">
-<p class="lead">{{ page.title }}</p>
-{% if page.speaker %}
-<p>
-  {% if page.speaker.url %}
-  <a href="{{ page.speaker.url }}">{{ page.speaker.name }}</a>
-  {% else %}
-  {{ page.speaker.name }}
-  {% endif %}
-  ({{ page.speaker.affil }})
-</p>
-{% endif %}
-</div>
+<div class="container">
+    <div class="page-header">
+        <div class="jumbotron">
+            <h2>{{ page.title }}</h2>
+            {% if page.speakers %}
+                {% if page.speakers.first %}
+                <p>
+                    Speaker:
+                    {% if page.speakers.first.url %}
+                    <a href="{{ page.speakers.first.url }}">{{ page.speakers.first.name }}</a>
+                    {% else %}
+                    {{ page.speakers.first.name }}
+                    {% endif %}
+                    (<i>{{ page.speakers.first.affil }}</i>)
+                </p>
+                {% endif %}
+                {% if page.speakers.second %}
+                <p>
+                    Speaker:
+                    {% if page.speakers.second.url %}
+                    <a href="{{ page.speakers.second.url }}">{{ page.speakers.second.name }}</a>
+                    {% else %}
+                    {{ page.speakers.second.name }}
+                    {% endif %}
+                    (<i>{{ page.speakers.second.affil }}</i>)
+                </p>
+                {% endif %}
+                {% if page.speakers.third %}
+                <p>
+                    Speaker:
+                    {% if page.speakers.third.url %}
+                    <a href="{{ page.speakers.third.url }}">{{ page.speakers.third.name }}</a>
+                    {% else %}
+                    {{ page.speakers.third.name }}
+                    {% endif %}
+                    (<i>{{ page.speakers.third.affil }}</i>)
+                </p>
+                {% endif %}
+                {% if page.speakers.fourth %}
+                <p>
+                    Speaker:
+                    {% if page.speakers.fourth.url %}
+                    <a href="{{ page.speakers.fourth.url }}">{{ page.speakers.fourth.name }}</a>
+                    {% else %}
+                    {{ page.speakers.fourth.name }}
+                    {% endif %}
+                    (<i>{{ page.speakers.fourth.affil }}</i>)
+                </p>
+                {% endif %}
+            {% endif %}
+        </div><!-- jumbotron -->
+    </div><!-- page-header -->
 
 {{ content }}
+
+</div><!-- container -->

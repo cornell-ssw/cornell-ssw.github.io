@@ -1,3 +1,4 @@
+# Ignore all local jekyll build related files
 _site
 .sass-cache
 .jekyll-metadata

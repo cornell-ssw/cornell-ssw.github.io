@@ -1,5 +1,5 @@
 ---
-nav: plans
+title: Current Plans
 ---
 
 - Logistics
