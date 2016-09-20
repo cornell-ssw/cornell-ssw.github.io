@@ -1,25 +1,23 @@
 ---
 layout: default
 ---
-<div class="container">
-    <div class="jumboHeader">
-        <div class="jumbotron">
-            <h2>{{ page.title }}</h2>
-            {% if page.speakers %}
-                {% for speaker in page.speakers %}
-                <p>
-                    Speaker:
-                    {% if speaker.url %}
-                    <a href="{{ speaker.url }}">{{ page.speakers.first.name }}</a>
-                    {% else %}
-                    {{ page.speakers.first.name }}
-                    {% endif %}
-                    (<i>{{ speaker.affil }}</i>)
-                </p>
-                {% endfor %}
-            {% endif %}
-        </div><!-- jumbotron -->
-    </div><!-- jumboHeader -->
-</div><!-- page-header -->
+<div class="jumboHeader">
+    <div class="jumbotron">
+        <h2>{{ page.title }}</h2>
+        {% if page.speakers %}
+            {% for speaker in page.speakers %}
+            <p>
+                Speaker:
+                {% if speaker.url %}
+                <a href="{{ speaker.url }}">{{ page.speakers.first.name }}</a>
+                {% else %}
+                {{ page.speakers.first.name }}
+                {% endif %}
+                (<i>{{ speaker.affil }}</i>)
+            </p>
+            {% endfor %}
+        {% endif %}
+    </div><!-- jumbotron -->
+</div><!-- jumboHeader -->
 
 {{ content }}
