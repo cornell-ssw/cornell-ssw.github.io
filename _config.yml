@@ -20,7 +20,7 @@ description: > # this means to ignore newlines until "baseurl:"
   modern tools relevant for developing and deploying scientific codes.
   Researchers from all areas of computational science and engineering
   are welcome
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://cornell-ssw.github.io" # the base hostname & protocol for your site
 #twitter_username: jekyllrb
 #github_username:  dbindel
