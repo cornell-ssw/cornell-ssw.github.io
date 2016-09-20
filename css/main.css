@@ -12,6 +12,13 @@ body {
   padding-left: 15px;
 }
 
+/* Expand the code highlights to fill the entire language-* highlight-rouge div.
+ * Without this, syntax highlighting from highlight.js will have a border with
+ * the rouge highlight background, which is usually different. */
+.highlight {
+  padding: 0px ! important;
+}
+
 /* Used on 'post' layout pages, same as page-header only no border-bottom */
 .jumboHeader {
   padding-top: 60px;

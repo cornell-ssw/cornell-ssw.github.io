@@ -13,5 +13,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- Custom highlighting function for jekyll. -->
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("[class^='language-'] pre code").each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+        $("div.highlighter-rouge pre code").each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+      });
+    </script>
   </body>
 </html>
