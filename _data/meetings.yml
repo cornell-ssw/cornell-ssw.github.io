@@ -12,8 +12,8 @@
   date: 2016-09-19
   info: <a href="/meetings/2016-09-19">Working with Remote Hosts</a>
   brief:
-    - Introduction to using <tt>ssh</tt> effectively.
-    - Introduction to using <tt>git</tt> effectively.
+    - Introduction to using <code>ssh</code> effectively.
+    - Introduction to using <code>git</code> effectively.
     - Example repository for more convenient terminal and tools.
 # Week 3
 ################################################################################
@@ -21,10 +21,10 @@
   date: 2016-09-26
   info: <a href="/meetings/2016-09-26">Using the Totient Cluster</a>
   brief:
-    - Queueing jobs on Totient (<tt>qsub</tt>).
-    - <a href="https://github.com/cornell-ssw/Totient-Demo" target="_blank">Brief example repository</a>
-      for <tt>C</tt> programs using <tt>make</tt>.
-    - Shared terminal sessions (<tt>tmux</tt> and <tt>tmate</tt>).
+    - Queueing jobs on Totient (<code>qsub</code>).
+    - <a href="hcodeps://github.com/cornell-ssw/Totient-Demo" target="_blank">Brief example repository</a>
+      for <code>C</code> programs using <code>make</code>.
+    - Shared terminal sessions (<code>tmux</code> and <code>tmate</code>).
 # Week 4
 ################################################################################
 -
