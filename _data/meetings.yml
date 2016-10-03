@@ -1,4 +1,3 @@
-################################################################################
 # Week 1
 ################################################################################
 -
@@ -7,7 +6,6 @@
   brief:
     - Discussion of the goals of the club.
     - Intro to Unix and Windows shell.
-################################################################################
 # Week 2
 ################################################################################
 -
@@ -17,7 +15,6 @@
     - Introduction to using <tt>ssh</tt> effectively.
     - Introduction to using <tt>git</tt> effectively.
     - Example repository for more convenient terminal and tools.
-################################################################################
 # Week 3
 ################################################################################
 -
@@ -28,3 +25,12 @@
     - <a href="https://github.com/cornell-ssw/Totient-Demo" target="_blank">Brief example repository</a>
       for <tt>C</tt> programs using <tt>make</tt>.
     - Shared terminal sessions (<tt>tmux</tt> and <tt>tmate</tt>).
+# Week 4
+################################################################################
+-
+  date: 2016-10-03
+  info: <a href="/meetings/2016-10-03">A Pythonic Whirlwind</a>
+  brief:
+    - High performance python.
+    - IPython/Jupyter Notebooks.
+    - Interacting with Jupyter on a cluster.
