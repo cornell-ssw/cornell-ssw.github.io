@@ -5,13 +5,14 @@
   info: <a href="/meetings/2016-09-12">Welcome to SSW</a>
   brief:
     - Discussion of the goals of the club.
-    - Intro to Unix and Windows shell.
+    - Introduction to Unix and Windows shell.
 # Week 2
 ################################################################################
 -
   date: 2016-09-19
   info: <a href="/meetings/2016-09-19">Working with Remote Hosts</a>
   brief:
+    - Overview of what a cluster is.
     - Introduction to using <code>ssh</code> effectively.
     - Introduction to using <code>git</code> effectively.
     - Example repository for more convenient terminal and tools.
