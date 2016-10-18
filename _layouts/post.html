@@ -4,6 +4,9 @@ layout: default
 <div class="jumboHeader">
     <div class="jumbotron">
         <h2>{{ page.title }}</h2>
+        {% if page.subtitle %}
+        <h3>{{ page.subtitle }}</h3>
+        {% endif %}
         {% if page.speakers %}
             {% for speaker in page.speakers %}
             <p>
