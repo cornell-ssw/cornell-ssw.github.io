@@ -1,9 +1,27 @@
+# Week 7
+################################################################################
+-
+  date: 2016-10-31
+  info: >
+    <a href="/meetings/2016-10-31">Computing on Google's Cloud</a>
+  brief:
+    - Hands-on workshop using Google's cloud platform.
+# Week 6
+################################################################################
+-
+  date: 2016-10-24
+  info: >
+    <a href="/meetings/2016-10-24">An Introduction to Julia</a>
+  brief:
+    - Crash course on the syntax and unique features of this language.
+    - <a href="https://github.com/madeleineudell/intro-to-julia" target="_blank">Hands-on demonstrations (through Jupyter Notebooks)!</a>
+    - Preview of useful features to wield for high-performance Julia.
 # Week 5
 ################################################################################
 -
-  date: 2016-10-18
+  date: 2016-10-17
   info: >
-    <a href="/meetings/2016-10-18">Where to Run Your Code: Real and Virtual Platforms</a>
+    <a href="/meetings/2016-10-17">Where to Run Your Code: Real and Virtual Platforms</a>
   brief:
     - Overview of the various resources available for distributed computing.
     - Understanding the differences between them.
