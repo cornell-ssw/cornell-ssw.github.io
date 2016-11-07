@@ -12,9 +12,9 @@ layout: default
             <p>
                 Speaker:
                 {% if speaker.url %}
-                <a href="{{ speaker.url }}">{{ page.speakers.first.name }}</a>
+                <a href="{{ speaker.url }}">{{ speaker.name }}</a>
                 {% else %}
-                {{ page.speakers.first.name }}
+                {{ speaker.name }}
                 {% endif %}
                 (<i>{{ speaker.affil }}</i>)
             </p>

@@ -1,3 +1,13 @@
+# Week 8
+################################################################################
+-
+  date: 2016-11-07
+  info: >
+    <a href="/meetings/2016-11-07">Statistical modeling, data visualization, and fun(ctional) programming in R</a>
+  brief:
+    - Introduction to the <code>R</code> programming language.
+    - Working with various kinds of datasets.
+    - Statistical testing and visualization of datasets.
 # Week 7
 ################################################################################
 -
