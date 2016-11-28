@@ -1,0 +1,131 @@
+---
+layout: slide
+title: Scientific Software Club at Cornell
+description: Code documentation
+theme: black
+transition: slide
+---
+
+<section data-markdown>
+# Scientific Software Club at Cornell
+## Code documentation
+## 28 Nov 2016
+</section>
+
+<section data-markdown>
+## The plan for today
+
+1. Talk about the importance of documentation
+2. Available documentation tools
+3. Intro to Sphinx
+  - Python and Read the Docs
+4. Intro to Doxygen
+  - C++ and codedocs.xyz
+  - Doxygen and Read the Docs
+</section>
+
+<section data-markdown>
+## Why is code documentation important?
+
+- No one will use your code if they can't figure out how it works!
+- You will not even be able to understand the code you wrote one year ago.
+- There is a reason every intro CS course allocates points in grading rubrics for documentation.
+- **How many times have you tried to use a software but gave up because you couldn't figure out how it worked?**
+</section>
+
+<section data-markdown>
+## Insufficient Documentation Example
+- Wavefront OBJ files are used in Computer Graphics to represent geometry.
+- Everybody has to deal with them, nobody wants to write the I/O code.
+- Enter [TinyOBJLoader](http://syoyo.github.io/tinyobjloader/): an excellent *tiny* library for just this!
+  - It works exactly as expected.
+  - It has documentation...but it leaves a lot of information about the full capabilities of the library to be learned by the developer.
+
+</section>
+
+<section data-markdown>
+## What is the point of the documentation?
+
+- To clarify the purpose of the software
+- To identify the requirements of the software
+- Enumerate the full capabilities **and** limitations
+- To make it possible for users to understand how to use your code
+- Make it possible for the users to figure out things on their own
+  - Minimize unnecessary bug reports and questions
+- To make it clear when the software should be used and when it shouldn't
+</section>
+
+<section data-markdown>
+## What to think of when documenting your code
+
+- Make the code as self-documented as possible
+  - Use descriptive variable names
+  - Nonnative English speakers: many will advise you to utilize english variable names regardless of the intended audience.
+    - Not a rule, but very common.
+- Clearly comment parts of the code that are hard to understand
+- Documentation comments for every class, member, type, and method
+- Make the documentation easy to generate and navigate
+</section>
+
+<section data-markdown>
+## Available documentation tools
+
+1. Sphinx is the standard for Python
+  - Sphinx is gaining traction for **many** other languages such as Julia.
+2. Doxygen is the most popular option for C/C++
+3. JavaDoc is the standard for Java
+4. roxygen2 is popular for R (yes?)
+5. Anything else?
+</section>
+
+<section data-markdown>
+## Automatic documentation generation
+
+- The documentation tools scan your source code for specific tags and use these to generate the documentation
+- Several external resources can be used to compile your documentation each time you push to your repository
+- codedocs.xyz supports Doxygen
+- Read the Docs supports Sphinx
+</section>
+
+<section data-markdown>
+## Sphinx tutorial
+
+- Sphinx and Read the Docs
+- The example code is available in the repository: https://github.com/dme65/ssw_sphinx
+</section>
+
+<section data-markdown>
+## Doxygen tutorial
+
+- Doxygen and codedocs.xyz
+</section>
+
+<section data-markdown>
+## Cautionary Tales for Sphinx
+
+- When using a non-Python language you will need to inform Sphinx about the 'default' language.
+- If you do not, the syntax highlighting may be incorrect, or non-existent
+- Two options:
+  1. In `conf.py`:
+    - `primary_domain` = 'cpp'
+    - `highlight_language` = 'cpp'
+  2. In your restructured text, be explicit about code listings (next slide).
+</section>
+<section>
+<h2>Explicit Syntax Highlighting</h2>
+<p align="left"><b>Yes</b> (use the <code>.. code-block::</code> directive):</p>
+<div class="language-rst">
+  <pre><code>Paragraph describing something
+.. code-block:: cpp
+
+   for(int i = 0;;) // ...</pre>
+ </code>
+</div>
+<p align="left"><b>No</b> (implicit code listing ending in <code>::</code>):</p>
+<div class="language-rst">
+  <pre><code>Paragraph describing something::
+
+   for(int i = 0;;) // ...</pre>
+ </code>
+</div>
+</section>
