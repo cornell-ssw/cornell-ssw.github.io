@@ -215,3 +215,61 @@ shouldn't run into trouble.  As an example
 two spaces.  The `brief` is the only section that is capable of bullet lists.  This
 document is written with html, so if you want something to show up with say bold text
 or code you will need `<b>bold text</b>` or `<code>some code</code>`.
+
+## Embedding Slides on the Meeting Pages
+
+Our speakers put in a lot of hard work to give us excellent presentations.  You should expect them
+to make a presentation of their own accord using whatever software they see fit.  We will accommodate
+all slide formats and embed whatever style they give us for them.  This keeps our website responsive,
+and places zero extra burden of work on the presenter(s).  At the time of writing this,
+most presenters are happy to simply send us an exported PDF, in which case refer to the last section.
+
+#### Reveal.js Slides
+
+When speakers give presentations using the Reveal.js slides, store the slides in the `slides/`
+directory.  To embed these on a given meeting page:
+
+```html
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="/slides/2016-09-12-spiel.html">
+    <p>Your browser does not appear to support iframe elements.</p>
+  </iframe>
+</div>
+```
+
+replacing the `src` with the appropriate url, noting that you embed with a `.html` suffix
+even though the file saved is `.md` (Reveal.js will generate the `.html` page).
+
+#### Google Slides
+
+If the presenter has prepared a GoogleSlides presentation, ask them to "Publish" their presentation
+following the [directions posted here](https://en.support.wordpress.com/google-docs/).  The size
+does not matter, we're letting bootstrap handle sizing for us.  Just ask them to copy-paste the
+`iframe` text in the `embed` tab.  Direct them to this section by copy-pasting [this link](#google-slides),
+the text we need will look something like
+
+```
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTQqWepc3qZHOxJ9EhjyNF7DavMQdgr419Lwd04FRAlvcxtDW8YryyTobS_EldTi7eJEBS8U3a6nzwt/embed?start=false&loop=false&delayms=3000" frameborder="0" width="1440" height="839" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+```
+
+Simply snag the `src="..."` and take the `...` and paste it into the following (same thing as Reveal.js):
+
+```html
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="...from google...">
+    <p>Your browser does not appear to support iframe elements.</p>
+  </iframe>
+</div>
+```
+
+Please take note of the aspect ratio of their presentation, if they are using a wide-screen template
+then keep the `embed-responsive-16by9`.  If they have a normal 'projector style' presentation,
+please use `embed-responsive-4by3`.
+
+#### Other Slides
+
+If they have produced their own presentation (KeyNote, PowerPoint, etc), request they
+send a PDF and upload the slides to the [SSW SpeakerDeck Account](https://speakerdeck.com/cussw_hosted).
+Once a given presentation is uploaded, include the abstract on the SpeakerDeck page as well
+as a link back to the meeting notes for which they presented.  Lastly, to embed these
+beauties just copy-paste the `embed` text from the SpeakerDeck page.
