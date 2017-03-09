@@ -1,3 +1,40 @@
+-
+  date: 2017-03-06
+  info: >
+    <a href="/meetings/2017-03-06">Databases and Large-scale Data Analytics</a>
+  brief:
+    - Managing high volumes of data through databasing.
+    - Accessible, open-source systems for analytics.
+    - Thorough discussion of, given the numerous factors and options, what to choose.
+# Week 14
+################################################################################
+-
+  date: 2017-02-27
+  info: >
+    <a href="/meetings/2017-02-27">Using Vagrant to Distribute Research Code to Colleagues</a>
+  brief:
+    - Getting started with vagrant
+    - Get started with configuring vagrant
+    - Launch some iPython kernels!
+# Week 13
+################################################################################
+-
+  date: 2017-02-13
+  info: >
+    <a href="/meetings/2017-02-13">Numerical Software Engineering</a>
+  brief:
+    - A summarization of best scientific software practices.
+    - Examples ranging from writing cleaner code to project management software.
+# Week 12
+################################################################################
+-
+  date: 2017-02-06
+  info: >
+    <a href="/meetings/2017-02-06">Data Visualization Using JavaScript</a>
+  brief:
+    - A Primer on D3.js (and some Three.js)
+    - How to interactively visualize your data in your browser!
+    - How to embed these visualizations on presentations.
 # Week 11
 ################################################################################
 -
