@@ -23,18 +23,25 @@ transition: slide
 <section data-markdown>
 ## MATLAB programming practices
 - Preallocate
-  ```matlab
+<div class="language-rst">
+  <pre><code>Paragraph describing something
+.. code-block:: matlab
   x = 0;
   for k = 2:1000000
       x(k) = x(k-1) + 5;
   end
-  ```
-  ```matlab
+ </pre></code>
+</div>
+
+<div class="language-rst">
+  <pre><code>Paragraph describing something
+.. code-block:: matlab
   x = zeros(1000000, 1);
   for k = 2:1000000
       x(k) = x(k-1) + 5;
   end
-  ```
+ </pre></code>
+</div>
 </section>
 
 <section data-markdown>
