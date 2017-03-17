@@ -23,35 +23,29 @@ transition: slide
 <section data-markdown>
 ## MATLAB programming practices
 - Preallocate
-<div class="language-rst">
-  <pre><code>Paragraph describing something
-.. code-block:: matlab
+  ```matlab
   x = 0;
   for k = 2:1000000
       x(k) = x(k-1) + 5;
   end
- </pre></code>
-</div>
-
-<div class="language-rst">
-  <pre><code>Paragraph describing something
-.. code-block:: matlab
+  ```
+  
+  ```matlab
   x = zeros(1000000, 1);
   for k = 2:1000000
       x(k) = x(k-1) + 5;
   end
- </pre></code>
-</div>
-</section>
+  ```
 
 <section data-markdown>
 ## MATLAB programming practices
 
 - Vectorize
-   ```matlab
+  ```matlab
   t = 0:.01:10;
   y = sin(t);
   ```
+
   ```matlab
   i = 0;
   for t = 0:.01:10
