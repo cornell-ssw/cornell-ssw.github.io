@@ -1,3 +1,13 @@
+# Week 17
+################################################################################
+-
+  date: 2017-03-20
+  info: >
+    <a href="/meetings/2017-03-20">Workflow and Build Automation</a>
+  brief:
+    - Motivation for automation.
+    - Introduction to <code>make</code>.
+    - Available successors to <code>make</code>, depending on your goals.
 # Week 16
 ################################################################################
 -
