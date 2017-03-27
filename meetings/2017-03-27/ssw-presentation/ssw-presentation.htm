@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+        "HTMLFiles/xhtml-math11-f.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>
+  Mathematica == Fun(ctions)
+ </title>
+ <link href="HTMLFiles/ssw-presentation.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<p class='Title' style='font-size: 18px;text-align: center;'>
+ <span style='font-size: 36px;'>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br />|&nbsp;&nbsp;Cornell SSW: Mathematica == Fun(ctions).&nbsp;&nbsp;|<br />~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br /></span><span style='font-size: 24px;'>Monday March 27, 2017</span>
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 18px;'>Author: Varun Gandhi (vg266) - Physics first year grad student </span>
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_1.png" alt="ssw-presentation_1.png" width="339" height="29" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ Obligatory feature list:<br />* Functional programming - first-class functions, lambdas, map, select etc.<br />* Symbolic manipulation - solving differential equations, nasty integrals etc.<br />* Rich visualization tools - making pretty graphs is relatively painless (glares at TikZ/PGF)<br />* Batteries + supercharger included - lots and lots of performant in-built functions<br />* Good documentation - easy to access with many examples<br />* Rapid prototyping - consequence of abovementioned features<br />* Getting help - friendly StackExchange community<br />and many more (depending on your field). <br /><br />(Benchmarks: http://julialang.org/benchmarks/)<br />
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ Example 1: You can make a fake alien language for a popular science fiction movie <br />(which is unfortunately unlike that in the original short story).<br /><br /><span><span><img src="HTMLFiles/ssw-presentation_2.gif" alt="ssw-presentation_2.gif" width="1200" height="675" style="vertical-align:middle" /></span></span><span style='font-size: 18px;'><br /></span>
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ Example 2: Lissajous figures (from the Documentation on `Manipulate`).
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_3.png" alt="ssw-presentation_3.png" width="713" height="303" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 18px;'>Example 3: Mathematica knows Markov processes. </span><span class='InputInline' style='font-size: 18px;'><span><a href="http://reference.wolfram.com/mathematica/ref/DiscreteMarkovProcess.html "><span class="LinkInline">Discrete Markov Process</span></a></span></span>
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_4.png" alt="ssw-presentation_4.png" width="415" height="29" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span class='SubsectionInline' style='font-size: 24px;'>Basics: Functions</span>
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 18px;'>Mathematica is (mostly) dynamic. You do not need to &quot;declare&quot; variables or bother with types (Mathematica does not have </span><span style='font-size: 18px;'><span>types</span></span><span style='font-size: 18px;'>)</span><span><a href="#0004441"><span><img src="HTMLFiles/ssw-presentation_5.png" alt="ssw-presentation_5.png" width="8" height="24" style="vertical-align:middle" /></span></a></span><span style='font-size: 18px;'>.<br />Variables are:<br />* typeless and mutable<br />* actually just functions with zero arguments<br />* global by default, so you should avoid mutation unless absolutely necessary<br />* saved in memory until you quit Mathematica or explicitly cleared</span>
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_6.gif" alt="ssw-presentation_6.gif" width="756" height="51" style="vertical-align:middle" />
+</p>
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_7.gif" alt="ssw-presentation_7.gif" width="821" height="79" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 18px;'>Functions are easy to declare using pattern matching.<br />Square brackets &lsquo;[ ]&rsquo; are reserved for function application.</span>
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_8.gif" alt="ssw-presentation_8.gif" width="307" height="107" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span><span style='font-size: 18px;'>Two common newbie mistakes are forgetting the &lsquo;:&rsquo; or the &lsquo;_&rsquo; symbols.</span>
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_9.png" alt="ssw-presentation_9.png" width="412" height="247" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 18px;'>We can declare anonymous functions (== lambdas) using &lsquo;#&rsquo; (slot) and &lsquo;&amp;&rsquo;. <br />These are called &ldquo;pure functions&rdquo; in Mathematica.<br /></span><span style='font-size: 16px;'>(These can have side-effects, unlike pure functions in other functional languages)</span>
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_10.gif" alt="ssw-presentation_10.gif" width="866" height="107" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span><span style='font-size: 18px;'>You can make pure functions by literally calling `Function`.<br /></span><span style='font-size: 14px;'>(The '&amp;' earlier is simply syntactic sugar for `Function`.)</span>
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_11.gif" alt="ssw-presentation_11.gif" width="291" height="51" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>Pure functions can also be declared with multiple arguments.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_12.gif" alt="ssw-presentation_12.gif" width="468" height="51" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>Mathematical equations are relatively easy to write and easy to read. <br />You cannot use '_' in function names as it is reserved for pattern matching.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_13.gif" alt="ssw-presentation_13.gif" width="620" height="222" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>You can use pattern matching to declare functions in a piece-wise manner.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_14.gif" alt="ssw-presentation_14.gif" width="352" height="135" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>You can declare multi-expression functions using &lsquo;;&rsquo; (`CompoundExpression`). <br />The function&rsquo;s return value is the value of the expression after the last &lsquo;;&rsquo;.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_15.gif" alt="ssw-presentation_15.gif" width="447" height="163" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>Recall that variables and functions are global by default.<br />You can restrict the scope of temporary variables using `Module`<br />instead of using `Clear` all the time.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_16.gif" alt="ssw-presentation_16.gif" width="583" height="191" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span class='SubsectionInline' style='font-size: 36px;'><br /></span><span class='SubsectionInline' style='font-size: 24px;'>Basics: Lists and associations</span>
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ Lists are the primary data structure in Mathematica.<br />Mathematica 10 introduces Associations, which are key-value pairs (dictionaries).<br />A lot of mathematical functions are &lsquo;Listable&rsquo; i.e. they operate on lists automagically.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_17.gif" alt="ssw-presentation_17.gif" width="345" height="107" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>`Apply` splits a list into elements and feeds them as arguments to a function.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_18.png" alt="ssw-presentation_18.png" width="403" height="163" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>Some other useful functions to operate on lists are `Map`, `Thread`, `MapThread`, and `Transpose`.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_19.gif" alt="ssw-presentation_19.gif" width="324" height="135" style="vertical-align:middle" />
+</p>
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_20.gif" alt="ssw-presentation_20.gif" width="536" height="107" style="vertical-align:middle" />
+</p>
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_21.png" alt="ssw-presentation_21.png" width="690" height="51" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>// is just postfix notation for unary function application, like @ was prefix notation for the same.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_22.png" alt="ssw-presentation_22.png" width="668" height="247" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>List indices start at 1. Indexing is done using double brackets '[[ ]]' or 'Part[list, ind]'.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_23.gif" alt="ssw-presentation_23.gif" width="318" height="135" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ Since the brackets start increasing quickly with indexing and function application,<br />it is a good idea to avoid direct indexing for readability.
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>Associations are key-value pairs. Many functions that operate on lists also work on Associations.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_24.gif" alt="ssw-presentation_24.gif" width="348" height="107" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ <span class='SubsubsectionInline' style='font-size: 24px;'><br /></span><span class='SubsectionInline' style='font-size: 24px;'>Interlude: `Manipulate`, `Animate`, `Plot3D`</span>
+</p>
+
+
+
+<p class="Text">
+ <span style='font-size: 18px;'>`Manipulate` is useful for making interactive plots with sliders and other elements.</span>
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/ssw-presentation_25.png" alt="ssw-presentation_25.png" width="657" height="247" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ <span style='font-size: 18px;'>It is also relatively easy to make animations.</span>
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/ssw-presentation_26.png" alt="ssw-presentation_26.png" width="685" height="135" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ <span style='font-size: 18px;'>3D plots are easy to make and can be rotated directly without special commands.</span>
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/ssw-presentation_27.png" alt="ssw-presentation_27.png" width="810" height="51" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span class='SubsectionInline' style='font-size: 24px;'><br />Basics: Getting help</span>
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ Mathematica has a built-in documentation centre accessible using F1 or under the Help Menu.<br /><span style='font-size: 18px;'><br /></span>Say I have code which I copy pasted below which I don&rsquo;t fully understand.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_28.png" alt="ssw-presentation_28.png" width="603" height="247" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>There is also a dedicated Mathematica StackExchange which will almost always have an answer<br />for all your basic questions (use the search function!). People are usually happy to help and fairly polite.<br /><span style='font-size: 24px;'><br /></span><span style='font-style: italic;'>MUST-READ: </span>https://mathematica.stackexchange.com/questions/18393/what-are-the-most-common-pitfalls-awaiting-new-users
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ <span class='SubsectionInline' style='font-size: 24px;'><br />Basics: Control flow</span>
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ Control-flow keywords like &lsquo;if&rsquo;, &lsquo;do&rsquo;, &lsquo;for&rsquo; etc. are just ordinary functions in Mathematica.<br />Therefore, unlike many other languages, `If` actually returns a value.<br />(Recall: All functions return values)
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_29.gif" alt="ssw-presentation_29.gif" width="386" height="163" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ <span style='font-size: 24px;'><br /></span>Despite that, in <span style='font-style: italic;'>most</span> cases you want to avoid writing a loop structure.<br />If you are writing a `For` loop as a beginner, you are almost surely doing something wrong!<br />
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ Example 1: Sum all triangular numbers (Tn) below a given M. One definition is Tn = n(n+1)/2.
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_30.gif" alt="ssw-presentation_30.gif" width="924" height="193" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ The implementation is bad because it wastes time doing checks for all numbers. <br />If we were writing imperative code, we could change the logic to:<br />* Start a `For` loop with n=1 (iteration variable), &Sigma;=0<br />* Compute Tn = n(n+1)/2. <br />* If Tn &le; M, then increment &Sigma; by Tn, else break.<br /><br />Can this be written in a functional style?
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_31.gif" alt="ssw-presentation_31.gif" width="633" height="110" style="vertical-align:middle" />
+</p>
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_32.gif" alt="ssw-presentation_32.gif" width="708" height="107" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ Example 2: Can we convert the following pseudo-code into a more functional style?
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ <span class="CodeInline">for (x,y) in XYpairs:<br />&nbsp;&nbsp;&nbsp;&nbsp;y = foo(x)<br />&nbsp;&nbsp;&nbsp;&nbsp;total += bar(x,y)</span>
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ How can we get rid of the &lsquo;for&rsquo; loop? Wouldn&rsquo;t using `Map` force us to iterate through the list twice?
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_33.png" alt="ssw-presentation_33.png" width="602" height="359" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ XYPairs was mutated inside &delta;Total, which may not be immediately obvious<br />while refactoring, especially for bigger, intimidating functions.<br /><span style='font-size: 24px;'><br /></span>Instead, try to avoid mutating arguments as far as possible.<br />Mathematica can memoize function values if the function has no side-effects.<br />Most library functions, even those named as `Append`, avoid mutating arguments.<br /><span style='font-size: 16px;'>(there is an additional function `AppendTo` as an option.)<br /></span>
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_34.png" alt="ssw-presentation_34.png" width="499" height="247" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 18px;'>
+ Learn to use functions like `Map`, `Array`, `MapThread`, `Transpose`, `Apply`, `Select` (== filter) etc. <br />that operate on entire lists instead of writing loops.
+</p>
+
+
+
+<p class='Text' style='font-size: 18px;'>
+ <span class='SubsectionInline' style='font-size: 36px;'><br /></span><span class='SubsectionInline' style='font-size: 24px;'>Bonus: You can call WolframAlpha from Mathematica</span>
+</p>
+
+
+
+<p class='Input' style='font-size: 18px;'>
+ <img src="HTMLFiles/ssw-presentation_35.png" alt="ssw-presentation_35.png" width="410" height="22" style="vertical-align:middle" />
+</p>
+
+<p class='Reference' style='font-size: 18px;'>
+ <a id="0004441"></a>
+ <span style='font-size: 16px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style='font-size: 16px;text-decoration: none;'>1</span><span style='font-size: 16px;'>&nbsp;&nbsp;&nbsp;&nbsp;https://stackoverflow.com/questions/4558732/is-mathematica-an-untyped-language</span>
+</p>
+
+
+
+
+
+
+<div style="font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;">
+ <a href="http://www.wolfram.com/language/" style="color:#000; text-decoration:none;">
+  <span style="color:#555555">Created with the Wolfram Language</span>
+ </a>
+</div>
+</body>
+
+</html>
