@@ -1,3 +1,13 @@
+# Week 19
+################################################################################
+-
+  date: 2017-04-17
+  info: >
+    <a href="/meetings/2017-04-17">Docker and Deep Learning</a>
+  brief:
+    - Getting started with <code>docker</code>.
+    - Overview of deep learning and how it works.
+    - Introduction to various useful toolsets for deep learning.
 # Week 18
 ################################################################################
 -
