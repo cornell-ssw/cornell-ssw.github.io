@@ -1,6 +1,16 @@
 # Week 20
 ################################################################################
 -
+  date: 2017-05-08
+  info: >
+    <a href="/meetings/2017-05-08">Red Cloud and the MATLAB Distributed Computing Server (MDCS)</a>
+  brief:
+    - Introduction to Red Cloud and its features.
+    - Insights on managing distributed computations in a cloud.
+    - Hands-on examples with MATLAB farmed out using MDCS
+# Week 20
+################################################################################
+-
   date: 2017-05-01
   info: >
     <a href="/meetings/2017-05-01">Mixing Languages in Scientific Codes</a>
