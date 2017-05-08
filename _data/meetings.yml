@@ -1,6 +1,16 @@
 # Week 20
 ################################################################################
 -
+  date: 2017-05-01
+  info: >
+    <a href="/meetings/2017-05-01">Mixing Languages in Scientific Codes</a>
+  brief:
+    - Why you would want to mix languages.
+    - Common patterns, problems, and interfaces available.
+    - Using code to generate code.
+# Week 20
+################################################################################
+-
   date: 2017-04-24
   info: >
     <a href="/meetings/2017-04-24/2017-04-24">Debugging and Testing Strategies in Scientific Codes</a>
