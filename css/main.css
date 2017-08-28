@@ -103,3 +103,8 @@ caption {
   font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   text-align: right;
 }
+
+/* Add some indentation to the definition lists for clarity. */
+dl > dd {
+  margin-left: 4%;
+}

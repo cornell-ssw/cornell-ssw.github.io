@@ -57,13 +57,15 @@ This website is built after each commit, but you can view your changes locally w
      # Navigate to the top level directory of this repository
      cd /path/to/cornell-ssw.github.io/
      # Install the tools needed for building GitHub Pages sites
+     # This installs what we have requested in the `Gemfile` in
+     # the top-level directory of this repository
      bundle install
      ```
 3. Now that you have all of the necessary files, you can build the site locally.  Execute the command
    below from the top-level `cornell-ssw.github.io` folder:
 
    ```
-   jekyll serve
+   bundle exec jekyll serve
    ```
 
    You can view the website by pasting the url `http://localhost:4000` into your favorite internet
@@ -237,8 +239,9 @@ directory.  To embed these on a given meeting page:
 </div>
 ```
 
-replacing the `src` with the appropriate url, noting that you embed with a `.html` suffix
-even though the file saved is `.md` (Reveal.js will generate the `.html` page).
+replacing the `src` with the appropriate url, noting that our convention of storing reveal files
+is to create a `.html` file in the [slides](slides) folder.  See the files there for examples of
+how you would write a Reveal.js slideshow.
 
 #### Google Slides
 
