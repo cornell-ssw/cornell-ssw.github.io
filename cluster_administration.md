@@ -56,6 +56,7 @@ suggestions.  Thank you, SpackMan.
             - [Relating `spack_all` and `spack_compilers`](#relating-spack_all-and-spack_compilers)
     - [Spack Module Setup](#spack-module-setup)
     - [Regenerating the Spider Cache](#regenerating-the-spider-cache)
+- [Totient and Spack and Python](#totient-and-spack-and-python)
 - [Debugging](#debugging)
     - [How to Proceed](#how-to-proceed)
     - [The Builtin Knobs Will Not Turn](#the-builtin-knobs-will-not-turn)
@@ -63,6 +64,7 @@ suggestions.  Thank you, SpackMan.
         - [Modify the Spack Package](#modify-the-spack-package)
 - [Factory Reset](#factory-reset)
 - [Future TODO](#future-todo)
+    - [Why Intel Is Broken](#why-intel-is-broken)
     - [Future TODO Notes](#future-todo-notes)
 
 # Spack Cheat Sheet
@@ -1049,6 +1051,87 @@ modules matching any of the "keys".
   install to show up in the `lmod` setup.  The last step would be, if you want it to be
   loaded on login for everybody, add it to `Totient.lua`.
 
+# Totient and Spack and Python
+----------------------------------------------------------------------------------------
+
+For `python`, something a little non-standard was done.  Because we created the
+`Totient_intel`, `Totient_clang`, and `Totient_gcc` modules for students to load, we
+can be pretty confident that where things like `numpy` etc are concerned, we will have
+_a BLAS library somewhere_ available.
+
+This is something called `spack activate`, the idea is that for a given python library
+such as `py-numpy`, you have two ways to make this available:
+
+1. Enable users to load the specific module.
+    - Main problem: the `lmod` modules generated do **not** load in the dependencies
+      e.g. `openblas` for `py-numpy`.
+    - Do do this, you must write a module for _every_ python package by first doing
+        1. `spack module loads --dependents py-numpy`
+        2. Write your own custom module for the students to load.
+2. More convenient, simply `spack activate py-numpy`.
+    - It creates a symlink to the `site-packages` directory so that `python` can use it.
+    - Added benefit is that `pip` will think that those dependencies are satisfied.
+
+So the idea here is that we've mirrored every python installation, they all have the
+same things installed (except Intel, because it's broken).  When a user is going to
+`module switch` to a different compiler, their `python` will change, so now that we
+have everything we want installed **and** activated, the only module that needs to get
+loaded is `python` (as opposed to `py-numpy` etc).  So basically, by using `activate`
+we get to
+
+1. Use `pip` to install `jupyter` (this is the only `pip` installed package).
+2. Support `module switch` be default, since everything gets symlinked into the
+   `site-packages` directory of the specific python installed.
+
+**How did you do this, Sir?**
+
+Well.  First you want to make sure every python installation has the same stuff.  Recall
+the power of `spack find`, and ye shall succeed:
+
+```console
+# Find all python packages for gcc
+$ spack find %gcc | grep 'py-' | cut -d '@' -f 1 | sed 's/\(.*\)/spack activate \1 %gcc/g' > activate_gcc.sh
+
+# Find all python packages for clang
+$ spack find %clang | grep 'py-' | cut -d '@' -f 1 | sed 's/\(.*\)/spack activate \1 %clang/g' > activate_clang.sh
+
+# Find all python packages for intel
+$ spack find %intel | grep 'py-' | cut -d '@' -f 1 | sed 's/\(.*\)/spack activate \1 %intel/g' > activate_intel.sh
+```
+
+So then a healthy serving of say `vimdiff activate_clang.sh activate_gcc.sh` will help
+you see if there are missing packages from one or the other.  In this instance, we were
+not able to install for `intel`:
+
+- `py-matplotlib`
+- `py-scipy`
+
+Then quickly make the script executable and add a shebang (`#!/usr/bin/env bash`) on the
+first line.  Then run it and something like this would happen:
+
+```console
+$ ./activate_clang.sh
+==> Activated extension py-appdirs@1.4.3%clang@4.0.0 arch=linux-rhel6-x86_64 /d64jp4n for python@2.7.13+shared~tk~ucs4%clang@4.0.0
+==> Activated extension py-backports-shutil-get-terminal-size@1.0.0%clang@4.0.0 arch=linux-rhel6-x86_64 /e3rzbjo for python@2.7.13+shared~tk~ucs4%clang@4.0.0
+==> Activated extension py-numpy@1.13.1%clang@4.0.0+blas+lapack arch=linux-rhel6-x86_64 /3ea47ve for python@2.7.13+shared~tk~ucs4%clang@4.0.0
+==> Activated extension py-bottleneck@1.0.0%clang@4.0.0 arch=linux-rhel6-x86_64 /m4k4gnz for python@2.7.13+shared~tk~ucs4%clang@4.0.0
+```
+
+Eventually, because `activate` is very clever and makes sure to activate dependencies,
+you will get some warnings such as
+
+```console
+==> Error: Package py-ipython-genutils%clang/hazvtyn is already activated.
+```
+
+simply because `py-ipython` already activated it.
+
+**Final Step**
+: `spack activate gcc %clang` and `spack activate opencv %gcc` to use the python side!
+
+OpenCV was also broken with `intel`, otherwise we'd activate that too.
+
+**You only ever need to `activate` once**, since it's just symlinking to the directories.
 
 # Debugging
 ----------------------------------------------------------------------------------------
@@ -1201,40 +1284,36 @@ If you apply the patch to a newer version of `develop`, it may be more broken th
 
 # Future TODO
 
-- GET IT TO FIX THE SYMLINKS.  I replied-all to the e-mail.
-- BUILD LLVM (in same ticket, requested more swap).
+- release swap space for failed (super sad face) llvm
 - FIX THE PERMISSIONS.
-    - **REMOVE WRITE PERMISSIONS FOR OTHER**.  Get the `totient-admin` group setup.
-- Right now, the `intel` compiler is generally broken.  It could work with some things,
-  but MPI is mostly broken.
-    - Proposed course of action: convert the existing module files into `lmod` modules
-      following the [TCL to Lua][lmod_tcl_to_lua] tutorial.  This is how the existing
-      `psxe/2015` and `devtoolset/3` modules in
-      `/share/apps/spack/totient_spack_configs/modules/lmod/Core` were created, and seem
-      to work exactly as expected.
-    - Modify the existing `totient_spack_configs/modules/lmod/Core/intel/15.0.3.lua` to
-      prepend wherever you decide to put these converted module files.
-    - For reference, you can `spack find %intel` to see what was able to be compiled.
-        - As we discussed, anything that had `+mpi` may be completely broken.
-    - If you want to ditch all of it: `spack uninstall -a %intel`.
-- Python and decisions.
-    - You have two options: either use `module load` for python packages, or use
-      `spack activate`.  I always use `activate`, which makes a symlink into the
-      `site-packages` directory.
-    - Things that build with python (e.g. the `boost` and `opencv` for both gcc) can
-      also be activated.  Maybe not `boost`, I forget.
-    - Currently, because of what is in `modules.yaml`, the modules at least get a
-      `py2` or `py3` suffix.  But I think `activate` and then blacklisting the modules
-      may be the least confusing.
-    - Please understand, you currently have **6** python installations.  2.7.13 and
-      3.6.1 for `intel`, `gcc@7.2.0`, and `gcc@6.4.0`.  I only used spack to install the
-      important AKA need true backend python libraries.  Basically, numpy, scipy and pandas.
-    - I did this fully for both `gcc`, `intel` failed.
-    - I also installed `pip` for the `gcc` libraries.  If you want another package, first
-      check `spack list | grep -i py-THING`.  If it's there, use `spack` and `activate`
-      (if that was your decision).  Otherwise, making sure `which pip` points where it
-      should (e.g. via `activate` and `module load gcc@7.2.0` then `module load python/2.7.13`)
-      (since `activate` creates symlinks).
+    - `umask 0022` instead of default `umask 0002` is probably what should be done in
+      the admin setup scripts?
+    - Only relevant if you want to enable somebody else to still `spack_node_install`,
+      but that probably won't happen anymore.
+
+## Why Intel Is Broken
+
+I added a `spack_node_intel_dirty_install` to the admin shell configurations, all it
+is doing is calling `spack install --dirty`, where `--dirty` is half of the key to
+getting intel to work.
+
+**RECALL**
+: You must manually edit `totient_spack_configs/setup/spack_yaml/packages_all.yaml` to
+  get it ready for _anything_ `intel`.  Search for `HERE HERE HERE` and make sure that
+  all of the `intel` providers etc are setup.
+
+So the packages that were not able to build (`boost`, `opencv`, `py-scipy`,
+`py-matplotlib`) all seem to share the same issue: it can't seem to find `std::complex`
+which (from internet trolling) seems to be some sort of bad `intel` configuration
+problem.
+
+As long as you are able to fix either the `intel/15.0.3` module (or `psxe/2015`) to get
+it to fix the shell configurations to be able to find `std::complex` from `intel`
+correctly, the `--dirty` basically tells `spack` to not sanitize the install environment.
+
+There were a couple of packages that did not build with "regular" `spack install` that
+a `spack install --dirty` did work.  But amidst the other issues, who knows how much of
+the `intel` stuff is actually working...
 
 ## Future TODO Notes
 
@@ -1245,13 +1324,14 @@ If you apply the patch to a newer version of `develop`, it may be more broken th
    `spack` installed it to under `spack_compilers/opt/spack/...`.
 
    - The reports online seem to indicate that `spack` works will with 2017.
+3. Or better yet, just use one to make your life easier and just don't you dare ever do
+   `spack uninstall -a` ;)
 
-Unclear how MODULEPATH is actually getting set.
+Unclear how MODULEPATH is actually getting set on login (I gave up and manually overrode
+instead of appending to...)
 
 - wassup with `/etc/auto.share` ?
     - `/etc/exports` ?
 
-
-`spack module refresh --module-type lmod --delete-tree -y`
 
 
